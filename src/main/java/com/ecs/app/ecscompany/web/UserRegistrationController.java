@@ -41,6 +41,10 @@ public class UserRegistrationController {
         if (existing != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
+        
+        if(userDto.getPassword().length() < 6) {
+            result.rejectValue("password", null, "The password must be 6 Characters minimum");
+        }
 
         if (result.hasErrors()){
             return "registration";
